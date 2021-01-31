@@ -1,0 +1,11 @@
+package org.zerock.controller;
+
+
+
+@Controller
+@RequestMapping("/sample")
+@Log4j
+public class SampleController {
+
+	
+} 

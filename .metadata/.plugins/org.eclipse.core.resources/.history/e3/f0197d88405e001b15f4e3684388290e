@@ -1,0 +1,25 @@
+package org.zerock.config;
+
+import javax.sql.DataSource;
+
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+
+import com.zaxxer.hikari.HikariConfig;
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@ComponentScan(basePackages = {"org.zerock.sample"})
+public class RootConfig { 
+ 
+	public DataSource dataSource() {
+		HikariConfig hikaryConfig = new HikariConfig();
+		hikaryConfig.setDataSourceClassName("oracle.jdbc.driver.OracleDriver");
+		hikaryConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		hikaryConfig.setUsername("book_ex");
+		hikaryConfig.setPassword("book_ex");
+		
+		HikariDataSource dataSource = new HikariDataSource(hikaryConfig);
+		return dataSource;
+	}
+}

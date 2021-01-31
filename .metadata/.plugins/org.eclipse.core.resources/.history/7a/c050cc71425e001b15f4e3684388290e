@@ -1,0 +1,37 @@
+package org.zerock.sample;
+
+
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration("file:src/main/webapp/WEB-INF/spring/root-context.xml")
+@Log4j
+public class DataSourceTests {
+	
+	private DataSource dataSource;
+	
+	private SqlSessionFactory SqlSessionFactory;
+	
+	/*
+	@Test
+	public void testConnection() {
+		
+		try {
+			Connection con = dataSource.getConnection();
+			log.info(con);
+		} catch (SQLException e) {
+			fail(e.getMessage());
+		}
+	}*/
+	
+	@Test
+	public void testMybatis() {
+		try (SqlSessionFactory session = SqlSessionFactory.openSession();
+				Connection con = session.getConnection();
+				){
+			log.info(session);
+			log.info(con);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+	}
+	
+}
